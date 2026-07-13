@@ -1,0 +1,65 @@
+.section { padding: 88px 28px; }
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 40px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -40px color-mix(in oklab, var(--color-ink) 40%, transparent);
+}
+
+.art { display: block; }
+
+.copy { max-width: 520px; }
+
+.title {
+  font-size: clamp(30px, 3.6vw, 44px);
+  color: var(--color-ink);
+  margin-bottom: 14px;
+}
+.title em {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.lede {
+  color: var(--color-ink-soft);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.note {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 500;
+}
+.dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 20%, transparent);
+}
+
+.discord {
+  margin-top: 18px;
+  color: var(--color-muted-foreground);
+  font-size: 14px;
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: 1fr; padding: 28px; }
+}
