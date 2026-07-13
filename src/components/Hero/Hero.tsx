@@ -1,6 +1,6 @@
 import { useFastScroll } from "@/hooks/useFastScroll";
 import { SketchPlaceholder } from "@/components/SketchPlaceholder";
-import { LivingWord } from "./LivingHeadline";
+import LivingHeadline from "./LivingHeadline";
 import styles from "./Hero.module.css";
 
 export function Hero() {
@@ -23,37 +23,56 @@ export function Hero() {
           First jam opens soon
         </span>
 
-        <h1 className={styles.title}>
-          Where writers <LivingWord words={["meet", "gather", "collide"]} />.
-          <span className={styles.titleAlt}>
-            Stories <LivingWord words={["grow", "sharpen", "bloom"]} />.
-          </span>
-        </h1>
+          <h1 className={styles.title}>
+            Where writers meet.
+
+            <span className={styles.titleAlt}>
+              <LivingHeadline
+                prefix="Stories "
+                words={[
+                  "grow.",
+                  "flourish.",
+                  "evolve.",
+                  "connect.",
+                  "matter.",
+                  "begin.",
+                ]}
+              />
+            </span>
+          </h1>
 
         <p className={styles.lede}>
-          A cozy space to write, compete, and grow — built for indie and student
-          writers. No algorithms. Just prompts, editors, and honest feedback.
+          A cozy space to write, compete, and grow — built for indie and
+          student writers. No algorithms. Just prompts, editors, and honest
+          feedback.
         </p>
 
         <div className={styles.actions}>
           <a
             href="#waitlist"
             className={styles.primary}
-            onClick={(e) => { e.preventDefault(); scrollTo("waitlist"); }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("waitlist");
+            }}
           >
             Join the Waitlist
           </a>
+
           <a
             href="#desk"
             className={styles.ghost}
-            onClick={(e) => { e.preventDefault(); scrollTo("desk"); }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("desk");
+            }}
           >
             Try a prompt
           </a>
         </div>
 
         <p className={styles.caption}>
-          <em>“A blank page is a beginning, not a limit.”</em>
+          <em>"A blank page is a beginning, not a limit."</em>
         </p>
       </div>
     </section>
