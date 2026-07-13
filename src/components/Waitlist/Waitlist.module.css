@@ -1,65 +1,115 @@
 .section { padding: 88px 28px; }
 
 .wrap {
-  max-width: 1100px;
+  max-width: 960px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 48px;
-  align-items: center;
-  padding: 40px;
+  padding: 44px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 20px;
   box-shadow: 0 30px 60px -40px color-mix(in oklab, var(--color-ink) 40%, transparent);
+  text-align: center;
 }
 
-.art { display: block; }
-
-.copy { max-width: 520px; }
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
 
 .title {
   font-size: clamp(30px, 3.6vw, 44px);
   color: var(--color-ink);
-  margin-bottom: 14px;
+  margin: 10px 0 12px;
 }
-.title em {
-  color: var(--color-accent);
-  font-style: italic;
-}
+.title em { color: var(--color-accent); font-style: italic; }
 
 .lede {
   color: var(--color-ink-soft);
   font-size: 16px;
   line-height: 1.6;
+  max-width: 48ch;
+  margin: 0 auto 28px;
+}
+
+.padWrap { margin: 0 auto; max-width: 640px; }
+
+.ticket {
+  margin: 24px auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px 10px 10px;
+  border: 1px dashed color-mix(in oklab, var(--color-ink) 25%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-serif);
+}
+.ticketNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  height: 34px;
+  padding: 0 12px;
+  background: var(--color-ink);
+  color: var(--color-primary-foreground);
+  border-radius: 999px;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+.ticketLabel {
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+.cta {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-ink) 12%, transparent);
+  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  cursor: not-allowed;
+  border: 1px solid transparent;
+  position: relative;
+}
+.cta::after {
+  content: "opens with the first jam";
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--color-ink);
+  color: var(--color-primary-foreground);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms, transform 160ms;
+  white-space: nowrap;
+}
+.cta:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .note {
   margin-top: 22px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
-  color: var(--color-primary);
   font-size: 13px;
-  font-weight: 500;
-}
-.dot {
-  width: 6px; height: 6px; border-radius: 999px;
-  background: var(--color-primary);
-  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 20%, transparent);
-}
-
-.discord {
-  margin-top: 18px;
-  color: var(--color-muted-foreground);
-  font-size: 14px;
-  font-style: italic;
   font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-muted-foreground);
 }
 
-@media (max-width: 860px) {
-  .wrap { grid-template-columns: 1fr; padding: 28px; }
+@media (max-width: 640px) {
+  .wrap { padding: 28px 22px; }
 }

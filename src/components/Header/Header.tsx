@@ -1,11 +1,13 @@
 import { useFastScroll } from "@/hooks/useFastScroll";
 import styles from "./Header.module.css";
 
-const NAV = [
-  { id: "jams", label: "Jams" },
-  { id: "about", label: "About" },
-  { id: "community", label: "Community" },
-  { id: "blog", label: "Blog" },
+const LEFT = [
+  { id: "desk", label: "jam" },
+  { id: "perks", label: "about" },
+];
+const RIGHT = [
+  { id: "waitlist", label: "community" },
+  { id: "jams", label: "blog" },
 ];
 
 export function Header() {
@@ -14,31 +16,13 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <a
-          href="#top"
-          className={styles.brand}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollTo("top");
-          }}
-        >
-          <span className={styles.brandMark}>Ink</span>
-          <span className={styles.brandMarkAlt}>Jam</span>
-          <span className={styles.brandLeaf} aria-hidden>
-            ✦
-          </span>
-        </a>
-
-        <nav className={styles.nav} aria-label="Primary">
-          {NAV.map((item) => (
+        <nav className={styles.navLeft} aria-label="Primary left">
+          {LEFT.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               className={styles.navLink}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo(item.id);
-              }}
+              onClick={(e) => { e.preventDefault(); scrollTo(item.id); }}
             >
               {item.label}
             </a>
@@ -46,15 +30,25 @@ export function Header() {
         </nav>
 
         <a
-          href="#waitlist"
-          className={styles.cta}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollTo("waitlist");
-          }}
+          href="#top"
+          className={styles.brand}
+          onClick={(e) => { e.preventDefault(); scrollTo("top"); }}
         >
-          Join Waitlist
+          Ink Jam
         </a>
+
+        <nav className={styles.navRight} aria-label="Primary right">
+          {RIGHT.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={styles.navLink}
+              onClick={(e) => { e.preventDefault(); scrollTo(item.id); }}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
       </div>
     </header>
   );
