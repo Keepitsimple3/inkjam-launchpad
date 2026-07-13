@@ -1,0 +1,103 @@
+.section {
+  padding: 72px 28px;
+  background: var(--color-surface-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+.title {
+  font-size: clamp(28px, 3.4vw, 40px);
+  margin: 12px 0 36px;
+  color: var(--color-ink);
+}
+.title em { color: var(--color-accent); font-style: italic; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.stub {
+  position: relative;
+  background: var(--color-surface);
+  padding: 26px 24px 28px;
+  text-align: left;
+  border-radius: 6px;
+  border: 1px dashed color-mix(in oklab, var(--color-ink) 28%, transparent);
+  box-shadow: 0 20px 40px -30px color-mix(in oklab, var(--color-ink) 40%, transparent);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.stub.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stub.d1 { transition-delay: 60ms; }
+.stub.d2 { transition-delay: 140ms; }
+.stub.d3 { transition-delay: 220ms; }
+
+.stub::before,
+.stub::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-surface-alt);
+  border: 1px dashed color-mix(in oklab, var(--color-ink) 28%, transparent);
+  transform: translateY(-50%);
+}
+.stub::before { left: -8px; }
+.stub::after { right: -8px; }
+
+.num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+}
+
+.stubTitle {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--color-ink);
+  margin: 8px 0 8px;
+}
+
+.stubBody {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.perf {
+  margin-top: 16px;
+  border-top: 1px dashed color-mix(in oklab, var(--color-ink) 25%, transparent);
+  padding-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@media (max-width: 780px) {
+  .grid { grid-template-columns: 1fr; }
+}
