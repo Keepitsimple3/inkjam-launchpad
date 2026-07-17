@@ -25,7 +25,6 @@ export function Perks() {
   return (
     <section id="perks" className={styles.section}>
       <div ref={ref} className={styles.wrap}>
-        <span className={styles.eyebrow}>Founding writers</span>
         <h2 className={styles.title}>
           Three things you get for showing up <em>early</em>.
         </h2>
@@ -41,7 +40,6 @@ export function Perks() {
               <span className={styles.num}>{p.n}</span>
               <h3 className={styles.stubTitle}>{p.title}</h3>
               <p className={styles.stubBody}>{p.body}</p>
-              <div className={styles.perf}>Admit one · InkJam · founding</div>
             </div>
           ))}
         </div>
