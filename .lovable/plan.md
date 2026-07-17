@@ -1,85 +1,106 @@
-## Goal
 
-Turn the current side-by-side landing into an editorial, "book cover" waitlist page with three ambient interactive moments — no backend, no real submissions, everything client-side.
+# InkJam v2 — from "airy waitlist" to "flat-pastel zine"
 
-## 1. Hero rebuild — centered, reference-matched
+The current site reads boring because it's mostly one warm beige on repeat, sections are too spaced apart, and there's no visual rhythm. This plan changes the palette, tightens the layout, and adds editorial character — while staying minimal (no gradients, no vibrancy screaming, no filler quotes).
 
-Replace the split hero with a single centered stack, illustration as backdrop.
+## 1. New palette (pastel-flat, art-friendly)
 
-- Nav floats inline with the wordmark: `jam · about  INK JAM  community · blog` (wordmark centered, links flanking it)
-- Headline stacks: **"Where writers meet."** in ink black, **"Stories grow."** in accent (serif italic), each on its own line
-- Short lede (2 lines max), single CTA below: `Join the Waitlist`
-- Illustration (`SketchPlaceholder` for now) sits **behind** the text as a soft, low-opacity backdrop — vase, typewriter, books framing left/right
-- On mobile, illustration drops opacity further and becomes a bottom band
-- Existing `useTypewriter` gets repurposed for the *living headline* below
+Rebuild tokens in `src/styles.css` around a **pastel green + maroon/orange** system that matches flat pastel illustration art.
 
-New file: `src/components/Hero/LivingHeadline.tsx` + `.module.css` — a small hook that swaps hover-target words (`meet → gather → collide`, `grow → sharpen → bloom`) with a short ink-bleed transition. Falls back to static text with no JS.
+| Token | Value | Use |
+|---|---|---|
+| `--paper` | `#f4efe4` | base background (warm cream, less yellow than now) |
+| `--paper-2` | `#e9e2d1` | alternate section band |
+| `--sage` | `#c8d6bf` | pastel green — soft section bands, chips |
+| `--sage-ink` | `#3d5a44` | deep sage — headings on light, body accents |
+| `--maroon` | `#7a2e2a` | primary accent — CTAs, key marks |
+| `--clay` | `#d97b4f` | pastel orange — highlights, marginalia |
+| `--butter` | `#f0d9a8` | soft warm highlight band |
+| `--ink` | `#241d1a` | body text |
+| `--ink-soft` | `#5a4f47` | secondary text |
 
-## 2. Interactive: "Write your first line" + prompt-of-the-week (combined)
+Rule: flat fills only. No gradients. Accents used sparingly — one accent per section, not three.
 
-New section between `FeatureStrip` and `ThreeThings`, id `#desk`.
+## 2. Tighter spacing (density 3 / 5)
 
-- A paper-card visual with a rotating prompt at top ("Write a goodbye in 50 words.", "Open with a lie.", "A room no one has entered in ten years.") — cycles every ~8s or on click of a small "↻ new prompt" chip
-- Below the prompt: a textarea styled as ruled paper, blinking caret, serif font. Visitor can type freely
-- Word count ticks up in the corner; at 50 words a soft "nice." appears
-- Nothing is submitted. A muted line under the card reads: *"This is just for you. Real jams open with the waitlist."*
-- Files: `src/components/Desk/Desk.tsx`, `Desk.module.css`, `src/hooks/usePromptRotator.ts`
+Global reduction of vertical air:
 
-## 3. Interactive: Ink signature pad (inside Waitlist)
+- Section padding: `88px → 56px` desktop, `72px → 40px` mobile.
+- Hero: drop from `40px 28px 80px` to `28px 28px 44px`; move the CTA closer to the headline.
+- Card gaps: `22px → 14px`.
+- Waitlist card padding: `44px → 28px`.
+- Header: `16px → 12px` vertical.
+- Kill the empty gap between FeatureStrip and Desk by making them share a background band.
 
-Moves the waitlist section from "email box" to "sign the guestbook."
+## 3. Color-blocked sections (instead of one flat page)
 
-- Canvas-based signature pad, ink-black stroke with slight taper (pressure faked via velocity)
-- Prompt: *"Sign the guestbook — founding writers get their signature in the first zine."*
-- Buttons: `Clear` and `Save signature` (Save just downloads a PNG locally, no upload)
-- Under it: `Joining #247` (see counter below) + `Add me to the waitlist` primary CTA that is visually disabled with tooltip *"Opens with the first jam."*
-- Files: `src/components/Waitlist/SignaturePad.tsx`, `SignaturePad.module.css`. Rewrite `Waitlist.tsx` around it.
+Sections alternate between three flat bands — no gradients, just solid fills separated by 1px hairlines:
 
-## 4. Founding writer perks strip
+```text
+Header        paper
+Hero          paper           (with pastel-orange marginalia)
+FeatureStrip  sage            (flat pastel green band)
+Desk          paper-2
+ThreeThings   paper
+Perks         butter          (flat warm band, ticket stubs pop)
+UpcomingJams  sage
+Waitlist      maroon          (dark band — the "cover" of the zine)
+Footer        paper
+```
 
-Replaces the current `ThreeThings` copy or sits directly under it (decide during build based on visual rhythm) — three tickets/stubs:
+The Waitlist becoming a dark maroon block is the single dramatic moment — everything before it is soft pastel.
 
-1. **Early access** — first jam invite before public launch
-2. **A physical zine** — your signature + first line printed in the founding issue
-3. **Credits mention** — name in the InkJam colophon, forever
+## 4. Editorial marginalia
 
-Files: `src/components/Perks/Perks.tsx`, `Perks.module.css`. Ticket-stub styling with dashed perforation borders.
+Add small ornamental marks that live in the margins, not the main column:
 
-## 5. Client-side position counter
+- Section eyebrows get a **folio number** on the opposite side (`No. 01 — The Desk` … `p. 12` on the right).
+- Small hand-drawn glyphs (asterism `⁂`, pilcrow `¶`, section mark `§`) as pastel-orange marginalia beside headings.
+- A thin rule + folio at the top of each section (`inkjam / issue 00 / p.03`) — like a zine running head.
+- Corner tick marks (crop-mark style) at the four corners of the Waitlist card.
 
-- `src/hooks/useSeededCounter.ts` — seeds from a fixed base (e.g. 231) plus a slow deterministic drift based on `Date.now()` so it reads the same across a session and grows ~1 every few minutes
-- Rendered as `Joining #247` in the waitlist section, styled like a ticket stub number
-- Honest fallback: if JS disabled, renders `Joining #—`
+All rendered in CSS/Unicode, no new assets.
 
-## 6. Micro-polish
+## 5. Bold typography (kept minimal)
 
-- `story-link` style hover underlines on nav
-- Fade-in on scroll for `Desk` and `Perks` sections (IntersectionObserver, ~200ms)
-- Keep `useFastScroll` wired to nav
+- Headings: bump display size up (`clamp(44px, 7vw, 84px)` stays for hero, but H2s go `28→36px min`).
+- Italic serif stays for accent words but **remove the pull-quote** under the hero ("A blank page is a beginning…") — user said no quotes.
+- Add a tiny uppercase mono-ish label above every section title (`— section 03 —`) using the existing sans, tracked out.
+
+## 6. Textured backgrounds (subtle)
+
+One reusable CSS-only paper-grain utility applied at ~4% opacity to `paper` and `sage` bands. SVG noise via `background-image: url("data:image/svg+xml…")` — no image files, no perf cost.
+
+## 7. Component-level changes
+
+- **Header**: remove the 3-column grid; go left brand + right nav, tighter, with a thin sage underline on hover instead of maroon.
+- **Hero**: remove the "Try a prompt" ghost button (redundant with Desk section right below); keep only the maroon CTA. Add folio + asterism marginalia.
+- **FeatureStrip**: switch to sage band, icons filled maroon on paper circles.
+- **Desk / ThreeThings**: reduce card padding, add corner folio numbers, drop hover-lift (feels too SaaS).
+- **Perks**: keep ticket-stub metaphor, move to butter band so stubs read as printed tickets.
+- **Waitlist**: maroon background, paper-colored card floating on top, signature pad gets crop-mark corners, ticket number in clay/orange.
+- **Footer**: single line, folio-style (`inkjam · issue 00 · founding waitlist · ©2026`).
+
+## 8. What is NOT changing
+
+- No new functionality (still no auth, no real submit).
+- No framework changes.
+- Existing hooks (`useFastScroll`, `useTypewriter`, `useSeededCounter`, `useInView`, `usePromptRotator`) stay.
+- CSS Modules per component stays.
+- Illustration placeholders stay as `SketchPlaceholder` — art can be dropped in later.
 
 ## Files touched
 
-**New**
-- `src/components/Hero/LivingHeadline.tsx` + `.module.css`
-- `src/components/Desk/Desk.tsx` + `.module.css`
-- `src/components/Perks/Perks.tsx` + `.module.css`
-- `src/components/Waitlist/SignaturePad.tsx` + `.module.css`
-- `src/hooks/usePromptRotator.ts`
-- `src/hooks/useSeededCounter.ts`
-- `src/hooks/useInView.ts` (small IntersectionObserver wrapper)
+- `src/styles.css` — new token set, paper-grain utility
+- `src/components/Header/*` — layout + hover color
+- `src/components/Hero/*` — spacing, remove ghost button + quote, marginalia
+- `src/components/FeatureStrip/*` — sage band
+- `src/components/Desk/*` — density + folio
+- `src/components/ThreeThings/*` — density + folio
+- `src/components/Perks/*` — butter band
+- `src/components/UpcomingJams/*` — sage band, tighter rows
+- `src/components/Waitlist/*` — maroon band, crop marks, clay ticket
+- `src/components/Footer/*` — folio line
+- New: `src/components/Folio/Folio.tsx` + `.module.css` — reusable section head (`— No. 03 —  THE DESK  ⁂  p.12`)
 
-**Edited**
-- `src/components/Hero/Hero.tsx` + `Hero.module.css` — centered stack, backdrop illustration
-- `src/components/Header/Header.tsx` + `.module.css` — wordmark-centered nav
-- `src/components/Waitlist/Waitlist.tsx` + `.module.css` — signature pad + counter + perks tie-in
-- `src/routes/index.tsx` — insert `<Desk />` and `<Perks />` in the section order
-
-## Explicitly out of scope
-
-- No Lovable Cloud, no database, no email capture, no real signup
-- No auth, no Discord/social links (none exist yet)
-- No image generation — keep `SketchPlaceholder` until you provide real art
-
-## Section order after build
-
-Header → Hero → FeatureStrip → **Desk (write your first line)** → ThreeThings → **Perks (founding stubs)** → UpcomingJams → **Waitlist (signature + counter)** → Footer
+Approve and I'll build it.

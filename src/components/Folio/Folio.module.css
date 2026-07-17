@@ -1,0 +1,39 @@
+.folio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-ink) 55%, transparent);
+  font-family: var(--font-sans);
+  padding-bottom: 6px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent);
+}
+
+.folio.onDark {
+  color: color-mix(in oklab, #f0d9a8 80%, transparent);
+  border-bottom-color: color-mix(in oklab, #f0d9a8 30%, transparent);
+}
+
+.left, .right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.glyph {
+  color: var(--color-clay);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.folio.onDark .glyph { color: var(--color-butter); }
+
+.title {
+  color: var(--color-ink);
+  letter-spacing: 0.28em;
+  font-weight: 600;
+}
+.folio.onDark .title { color: #fbf7ec; }

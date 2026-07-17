@@ -1,34 +1,19 @@
 import { useFastScroll } from "@/hooks/useFastScroll";
 import styles from "./Header.module.css";
 
-const LEFT = [
+const NAV = [
   { id: "desk", label: "jam" },
-  { id: "perks", label: "about" },
-];
-const RIGHT = [
-  { id: "waitlist", label: "community" },
-  { id: "jams", label: "blog" },
+  { id: "about", label: "about" },
+  { id: "jams", label: "prompts" },
+  { id: "waitlist", label: "waitlist" },
 ];
 
 export function Header() {
-  const scrollTo = useFastScroll({ offset: 72 });
+  const scrollTo = useFastScroll({ offset: 64 });
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <nav className={styles.navLeft} aria-label="Primary left">
-          {LEFT.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollTo(item.id); }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
         <a
           href="#top"
           className={styles.brand}
@@ -37,8 +22,8 @@ export function Header() {
           Ink Jam
         </a>
 
-        <nav className={styles.navRight} aria-label="Primary right">
-          {RIGHT.map((item) => (
+        <nav className={styles.nav} aria-label="Primary">
+          {NAV.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
