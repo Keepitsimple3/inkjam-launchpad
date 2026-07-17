@@ -10,39 +10,3 @@
   white-space: nowrap;
   overflow: hidden;
 }
-
-.wordContainer::after {
-  content: "";
-  position: absolute;
-  inset: -15% -10%;
-  background: linear-gradient(
-    110deg,
-    transparent 20%,
-    rgba(255,255,255,0.15) 40%,
-    rgba(255,255,255,0.75) 50%,
-    rgba(255,255,255,0.15) 60%,
-    transparent 80%
-  );
-  transform: translateX(-140%) skewX(-20deg);
-  opacity: 0;
-  pointer-events: none;
-}
-.wrapper:hover .wordContainer {
-  text-shadow:
-    0 0 8px rgba(255,255,255,0.25),
-    0 0 16px rgba(255,255,255,0.12);
-}
-.wrapper:hover .wordContainer::after {
-  opacity: 1;
-  animation: gleam 2s ease;
-}
-
-@keyframes gleam {
-  from {
-    transform: translateX(-140%) skewX(-20deg);
-  }
-
-  to {
-    transform: translateX(140%) skewX(-20deg);
-  }
-}

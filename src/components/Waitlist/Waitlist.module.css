@@ -1,59 +1,84 @@
-.section { padding: 88px 28px; }
+.section {
+  padding: 64px 28px 72px;
+  background: var(--color-maroon);
+  color: #fbf7ec;
+  position: relative;
+}
 
 .wrap {
-  max-width: 960px;
+  position: relative;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 44px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 20px;
-  box-shadow: 0 30px 60px -40px color-mix(in oklab, var(--color-ink) 40%, transparent);
+  padding: 32px 32px 28px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: 1px solid var(--color-maroon-deep);
+  border-radius: 6px;
+  box-shadow: 8px 8px 0 var(--color-sage-ink);
   text-align: center;
 }
 
+/* Crop-mark corners */
+.wrap::before,
+.wrap::after,
+.corner1,
+.corner2 {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--color-clay);
+  pointer-events: none;
+}
+.wrap::before { top: -12px; left: -12px; border-right: none; border-bottom: none; }
+.wrap::after { top: -12px; right: -12px; border-left: none; border-bottom: none; }
+.corner1 { bottom: -12px; left: -12px; border-right: none; border-top: none; }
+.corner2 { bottom: -12px; right: -12px; border-left: none; border-top: none; }
+
 .eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-muted-foreground);
+  color: var(--color-clay);
 }
 
 .title {
-  font-size: clamp(30px, 3.6vw, 44px);
+  font-size: clamp(32px, 3.8vw, 46px);
   color: var(--color-ink);
-  margin: 10px 0 12px;
+  margin: 8px 0 10px;
 }
-.title em { color: var(--color-accent); font-style: italic; }
+.title em { color: var(--color-maroon); font-style: italic; }
 
 .lede {
   color: var(--color-ink-soft);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15.5px;
+  line-height: 1.55;
   max-width: 48ch;
-  margin: 0 auto 28px;
+  margin: 0 auto 22px;
 }
 
 .padWrap { margin: 0 auto; max-width: 640px; }
 
 .ticket {
-  margin: 24px auto 0;
+  margin: 20px auto 0;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 10px 18px 10px 10px;
-  border: 1px dashed color-mix(in oklab, var(--color-ink) 25%, transparent);
+  gap: 12px;
+  padding: 8px 16px 8px 8px;
+  border: 1px dashed color-mix(in oklab, var(--color-maroon) 40%, transparent);
   border-radius: 999px;
   font-family: var(--font-serif);
+  background: #fbf7ec;
 }
 .ticketNum {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 68px;
-  height: 34px;
+  height: 32px;
   padding: 0 12px;
-  background: var(--color-ink);
-  color: var(--color-primary-foreground);
+  background: var(--color-clay);
+  color: #fbf7ec;
   border-radius: 999px;
   font-style: italic;
   font-size: 15px;
@@ -65,16 +90,16 @@
 }
 
 .cta {
-  margin-top: 22px;
+  margin-top: 18px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 13px 22px;
+  padding: 12px 22px;
   font-size: 15px;
   font-weight: 500;
-  border-radius: 999px;
+  border-radius: 6px;
   background: color-mix(in oklab, var(--color-ink) 12%, transparent);
-  color: color-mix(in oklab, var(--color-ink) 60%, transparent);
+  color: color-mix(in oklab, var(--color-ink) 55%, transparent);
   cursor: not-allowed;
   border: 1px solid transparent;
   position: relative;
@@ -91,7 +116,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 4px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 160ms, transform 160ms;
@@ -103,7 +128,7 @@
 }
 
 .note {
-  margin-top: 22px;
+  margin-top: 18px;
   font-size: 13px;
   font-family: var(--font-serif);
   font-style: italic;
@@ -111,5 +136,5 @@
 }
 
 @media (max-width: 640px) {
-  .wrap { padding: 28px 22px; }
+  .wrap { padding: 22px 18px; }
 }

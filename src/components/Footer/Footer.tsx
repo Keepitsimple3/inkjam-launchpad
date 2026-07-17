@@ -4,12 +4,15 @@ export function Footer() {
   return (
     <footer id="blog" className={styles.footer}>
       <div className={styles.inner}>
-        <p className={styles.tag}>
-          Open to all skill levels. No algorithms. <em>Just writers.</em>
-        </p>
-        <p className={styles.small}>
-          © {new Date().getFullYear()} InkJam — a quiet corner of the internet.
-        </p>
+        <span className={styles.folio}>inkjam</span>
+        <span className={styles.dot}>·</span>
+        <span>issue 00</span>
+        <span className={styles.dot}>·</span>
+        <span>founding waitlist</span>
+        <span className={styles.dot}>·</span>
+        <span>© {new Date().getFullYear()}</span>
+        <span className={styles.dot}>·</span>
+        <span className={styles.glyph}>⁂</span>
       </div>
     </footer>
   );
