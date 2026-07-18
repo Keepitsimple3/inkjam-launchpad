@@ -1,3 +1,4 @@
+import { Folio } from "@/components/Folio/Folio";
 import styles from "./UpcomingJams.module.css";
 
 const JAMS = [
@@ -10,6 +11,8 @@ export function UpcomingJams() {
   return (
     <section id="jams" className={styles.section}>
       <div className={styles.wrap}>
+        <Folio no="05" title="Upcoming Jams" page="12" glyph="§" />
+
         <header className={styles.head}>
           <span className={styles.eyebrow}>— section 05 —</span>
           <h2 className={styles.title}>Upcoming Jams</h2>

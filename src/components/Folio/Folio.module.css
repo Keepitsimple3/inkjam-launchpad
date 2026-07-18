@@ -10,12 +10,12 @@
   font-family: var(--font-sans);
   padding-bottom: 6px;
   margin-bottom: 22px;
-  border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-brown) 45%, transparent);
 }
 
 .folio.onDark {
-  color: color-mix(in oklab, #f0d9a8 80%, transparent);
-  border-bottom-color: color-mix(in oklab, #f0d9a8 30%, transparent);
+  color: color-mix(in oklab, var(--color-butter) 85%, transparent);
+  border-bottom-color: color-mix(in oklab, var(--color-butter) 35%, transparent);
 }
 
 .left, .right {
@@ -36,4 +36,4 @@
   letter-spacing: 0.28em;
   font-weight: 600;
 }
-.folio.onDark .title { color: #fbf7ec; }
+.folio.onDark .title { color: #fbf6ea; }

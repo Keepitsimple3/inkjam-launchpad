@@ -8,6 +8,11 @@ interface FolioProps {
   onDark?: boolean;
 }
 
+/**
+ * Editorial running head — sits at the top of a section like a zine masthead:
+ * `No. 03  ⁂  THE DESK              inkjam · issue 00  p.12`
+ * Rendered in small tracked sans so it never competes with the serif headings.
+ */
 export function Folio({ no, title, page, glyph = "⁂", onDark = false }: FolioProps) {
   return (
     <div className={`${styles.folio} ${onDark ? styles.onDark : ""}`}>

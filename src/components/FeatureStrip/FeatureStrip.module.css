@@ -1,8 +1,10 @@
+/* Slim sage divider band — the one color-punctuation strip between
+   the opening spread and the feature article. */
 .strip {
-  padding: 18px 28px;
+  padding: 14px 28px;
   background: var(--color-sage);
-  border-top: 1px solid color-mix(in oklab, var(--color-sage-ink) 22%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, var(--color-sage-ink) 22%, transparent);
+  border-top: 1px solid color-mix(in oklab, var(--color-sage-ink) 28%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-sage-ink) 28%, transparent);
 }
 
 .list {
@@ -33,7 +35,7 @@
   width: 28px; height: 28px;
   border-radius: 999px;
   background: var(--color-paper);
-  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 30%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-brown) 55%, transparent);
   color: var(--color-maroon);
   font-size: 13px;
   flex-shrink: 0;

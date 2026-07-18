@@ -1,5 +1,5 @@
 .section {
-  padding: 56px 28px;
+  padding: var(--section-pad-y) var(--section-pad-x);
   background: var(--color-paper);
 }
 
@@ -45,10 +45,12 @@
   gap: 14px;
 }
 
+/* Cream cards with warm brown edges; the middle one keeps its sage tint
+   to organize the trio without recoloring the whole section. */
 .card {
   position: relative;
-  background: #fbf7ec;
-  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid color-mix(in oklab, var(--color-brown) 55%, transparent);
   border-radius: 8px;
   padding: 18px 18px 22px;
   display: flex;
@@ -57,8 +59,8 @@
 }
 
 .card:nth-child(2) {
-  background: var(--color-sage);
-  border-color: color-mix(in oklab, var(--color-sage-ink) 30%, transparent);
+  background: color-mix(in oklab, var(--color-sage) 45%, var(--color-surface));
+  border-color: color-mix(in oklab, var(--color-sage-ink) 35%, transparent);
 }
 .card:nth-child(2) .cardText { color: var(--color-sage-ink); }
 .card:nth-child(2) .number { color: var(--color-sage-ink); }

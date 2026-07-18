@@ -1,7 +1,7 @@
 .section {
   padding: 64px 28px 72px;
   background: var(--color-maroon);
-  color: #fbf7ec;
+  color: #fbf6ea;
   position: relative;
 }
 
@@ -59,16 +59,17 @@
 
 .padWrap { margin: 0 auto; max-width: 640px; }
 
+/* Ticket reads as a real printed stub — washi-tape tab in pink, clay number */
 .ticket {
   margin: 20px auto 0;
   display: inline-flex;
   align-items: center;
   gap: 12px;
   padding: 8px 16px 8px 8px;
-  border: 1px dashed color-mix(in oklab, var(--color-maroon) 40%, transparent);
+  border: 1px dashed color-mix(in oklab, var(--color-maroon) 45%, transparent);
   border-radius: 999px;
   font-family: var(--font-serif);
-  background: #fbf7ec;
+  background: var(--color-surface);
 }
 .ticketNum {
   display: inline-flex;
@@ -78,7 +79,7 @@
   height: 32px;
   padding: 0 12px;
   background: var(--color-clay);
-  color: #fbf7ec;
+  color: #fbf6ea;
   border-radius: 999px;
   font-style: italic;
   font-size: 15px;

@@ -33,6 +33,9 @@
   --color-maroon-deep: var(--maroon-deep);
   --color-clay: var(--clay);
   --color-butter: var(--butter);
+  --color-pink: var(--pink);
+  --color-pink-soft: var(--pink-soft);
+  --color-brown: var(--brown);
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -41,57 +44,50 @@
 :root {
   --radius: 0.5rem;
 
-  /* Pastel-flat zine palette */
-  --paper: #f4efe4;
-  --paper-2: #ebe4d2;
-  --sage: #cddac2;
+  /* Old-notebook / watercolor palette
+     Cream is the dominant paper. Sage organizes. Maroon marks moments.
+     Pink is washi-tape / sticky-note marginalia. Brown is the warm edge. */
+  --paper: #f5efe2;
+  --paper-2: #efe7d6;
+  --sage: #c8d6bf;
   --sage-ink: #3d5a44;
   --maroon: #7a2e2a;
   --maroon-deep: #5a1f1c;
   --clay: #d97b4f;
   --butter: #f0d9a8;
+  --pink: #c98a86;
+  --pink-soft: #ecc4c0;
+  --brown: #b39a7e;
 
   --background: var(--paper);
-  --surface: #fbf7ec;
+  --surface: #fbf6ea;
   --surface-alt: var(--paper-2);
 
   --foreground: #241d1a;
   --ink: #241d1a;
   --ink-soft: #5a4f47;
 
-  --muted: #e8e0cd;
+  --muted: #e8dfca;
   --muted-foreground: #7a6b5f;
 
   --primary: var(--maroon);
-  --primary-foreground: #fbf7ec;
+  --primary-foreground: #fbf6ea;
 
-  --accent: var(--maroon);
-  --accent-foreground: #fbf7ec;
+  --accent: var(--pink);
+  --accent-foreground: #241d1a;
 
-  --border: #d9cfb8;
+  --border: var(--brown);
   --ring: var(--sage-ink);
 
   --font-serif: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* subtle paper grain — SVG noise data-uri, ~4% opacity */
-  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15  0 0 0 0 0.12  0 0 0 0 0.1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
+  /* editorial spacing scale — sections breathe inside, not between */
+  --section-pad-y: 52px;
+  --section-pad-x: 28px;
 
-@utility grain {
-  position: relative;
-  isolation: isolate;
-}
-@utility grain-overlay {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--grain);
-  background-size: 160px 160px;
-  mix-blend-mode: multiply;
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
+  /* subtle paper grain — SVG noise data-uri */
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15  0 0 0 0 0.12  0 0 0 0 0.1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 @layer base {
@@ -115,4 +111,28 @@
     font-weight: 500;
     letter-spacing: -0.01em;
   }
+}
+
+/* Reusable tactile utilities — washi tape, deckled edge, sticky note */
+@utility washi {
+  position: relative;
+}
+@utility washi-tape {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 64px;
+  height: 20px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--pink-soft);
+  border: 1px solid color-mix(in oklab, var(--pink) 55%, transparent);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--ink) 12%, transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+@utility deckled {
+  background-image:
+    radial-gradient(circle at 4px 0, transparent 4px, var(--color-surface) 4.5px) 0 100% / 8px 5px repeat-x;
 }
