@@ -1,5 +1,4 @@
 import { SketchPlaceholder } from "@/components/SketchPlaceholder";
-import { Folio } from "@/components/Folio/Folio";
 import styles from "./ThreeThings.module.css";
 
 const CARDS = [
@@ -12,8 +11,6 @@ export function ThreeThings() {
   return (
     <section id="about" className={styles.section}>
       <div className={styles.wrap}>
-        <Folio no="03" title="Three Things Every Writer Needs" page="06" glyph="⁂" />
-
         <header className={styles.head}>
           <span className={styles.eyebrow}>— section 03 —</span>
           <h2 className={styles.title}>

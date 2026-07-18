@@ -1,7 +1,8 @@
 .section {
-  padding: var(--section-pad-y) var(--section-pad-x);
-  background: var(--color-paper);
-  border-top: 1px solid color-mix(in oklab, var(--color-brown) 30%, transparent);
+  padding: 56px 28px;
+  background: var(--color-sage);
+  border-top: 1px solid color-mix(in oklab, var(--color-sage-ink) 25%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-sage-ink) 25%, transparent);
 }
 
 .wrap { max-width: 960px; margin: 0 auto; }
@@ -11,16 +12,16 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-clay);
+  color: var(--color-maroon);
 }
 .title {
   font-size: clamp(30px, 3.4vw, 40px);
-  color: var(--color-ink);
+  color: var(--color-sage-ink);
   margin-top: 6px;
 }
 .note {
   margin-top: 6px;
-  color: var(--color-ink-soft);
+  color: color-mix(in oklab, var(--color-sage-ink) 75%, transparent);
   font-size: 14px;
 }
 
@@ -32,16 +33,14 @@
   gap: 10px;
 }
 
-/* Jam rows sit on cream cards with warm brown edges — consistent with
-   the rest of the publication rather than a separate sage panel. */
 .row {
   display: grid;
   grid-template-columns: 82px 1fr auto;
   gap: 20px;
   align-items: center;
   padding: 16px 20px;
-  background: var(--color-surface);
-  border: 1px solid color-mix(in oklab, var(--color-brown) 50%, transparent);
+  background: #fbf7ec;
+  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 22%, transparent);
   border-radius: 6px;
 }
 
@@ -50,7 +49,7 @@
   flex-direction: column;
   align-items: center;
   padding: 6px 0;
-  border-right: 1px solid color-mix(in oklab, var(--color-brown) 35%, transparent);
+  border-right: 1px solid var(--color-border);
 }
 
 .month {
@@ -89,9 +88,9 @@
   font-size: 12px;
   color: var(--color-sage-ink);
   padding: 2px 10px;
-  border: 1px solid color-mix(in oklab, var(--color-brown) 55%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 30%, transparent);
   border-radius: 999px;
-  background: color-mix(in oklab, var(--color-sage) 30%, var(--color-paper));
+  background: var(--color-sage);
 }
 
 .badge {

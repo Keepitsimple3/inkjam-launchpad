@@ -1,5 +1,4 @@
 import { useInView } from "@/hooks/useInView";
-import { Folio } from "@/components/Folio/Folio";
 import styles from "./Perks.module.css";
 
 const PERKS = [
@@ -26,8 +25,6 @@ export function Perks() {
   return (
     <section id="perks" className={styles.section}>
       <div ref={ref} className={styles.wrap}>
-        <Folio no="04" title="Founding Perks" page="09" glyph="¶" />
-
         <h2 className={styles.title}>
           Three things you get for showing up <em>early</em>.
         </h2>
@@ -40,7 +37,6 @@ export function Perks() {
                 i === 0 ? styles.d1 : i === 1 ? styles.d2 : styles.d3
               }`}
             >
-              <span className={styles.tape} aria-hidden />
               <span className={styles.num}>{p.n}</span>
               <h3 className={styles.stubTitle}>{p.title}</h3>
               <p className={styles.stubBody}>{p.body}</p>

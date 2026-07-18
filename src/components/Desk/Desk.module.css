@@ -1,12 +1,13 @@
 .section {
-  padding: var(--section-pad-y) var(--section-pad-x);
-  background: var(--color-paper);
-  border-bottom: 1px solid color-mix(in oklab, var(--color-brown) 30%, transparent);
+  padding: 56px 28px;
+  background: var(--color-paper-2);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .wrap {
   max-width: 820px;
   margin: 0 auto;
+  text-align: center;
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 600ms ease, transform 600ms ease;
@@ -20,7 +21,7 @@
   text-transform: uppercase;
   color: var(--color-sage-ink);
   padding: 3px 10px;
-  border: 1px solid color-mix(in oklab, var(--color-brown) 50%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 30%, transparent);
   border-radius: 999px;
 }
 
@@ -28,18 +29,16 @@
   font-size: clamp(30px, 3.8vw, 44px);
   color: var(--color-ink);
   margin: 12px 0 24px;
-  text-align: center;
 }
 .title em {
   color: var(--color-maroon);
   font-style: italic;
 }
 
-/* Notebook "page" — cream card, warm brown rule lines, soft sage shadow */
 .card {
   position: relative;
-  background: var(--color-surface);
-  border: 1px solid color-mix(in oklab, var(--color-brown) 60%, transparent);
+  background: #fbf7ec;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 22px 24px 18px;
   box-shadow:
@@ -49,7 +48,7 @@
   background-image: repeating-linear-gradient(
     to bottom,
     transparent 0 31px,
-    color-mix(in oklab, var(--color-brown) 22%, transparent) 31px 32px
+    color-mix(in oklab, var(--color-ink) 5%, transparent) 31px 32px
   );
 }
 
@@ -59,7 +58,7 @@
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed color-mix(in oklab, var(--color-brown) 55%, transparent);
+  border-bottom: 1px dashed color-mix(in oklab, var(--color-ink) 22%, transparent);
   margin-bottom: 12px;
 }
 
@@ -83,7 +82,7 @@
   font-size: 12px;
   color: var(--color-ink-soft);
   background: transparent;
-  border: 1px solid color-mix(in oklab, var(--color-brown) 60%, transparent);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 5px 12px;
   cursor: pointer;

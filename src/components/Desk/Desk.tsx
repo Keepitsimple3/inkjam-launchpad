@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { usePromptRotator } from "@/hooks/usePromptRotator";
 import { useInView } from "@/hooks/useInView";
-import { Folio } from "@/components/Folio/Folio";
 import styles from "./Desk.module.css";
 
 const PROMPTS = [
@@ -26,7 +25,6 @@ export function Desk() {
   return (
     <section id="desk" className={styles.section}>
       <div ref={ref} className={`${styles.wrap} ${inView ? styles.visible : ""}`}>
-        <Folio no="02" title="The Desk" page="04" glyph="§" />
         <span className={styles.eyebrow}>The desk</span>
         <h2 className={styles.title}>
           Write your <em>first line</em>.

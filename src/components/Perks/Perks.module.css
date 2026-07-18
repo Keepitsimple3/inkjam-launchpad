@@ -1,6 +1,8 @@
 .section {
-  padding: var(--section-pad-y) var(--section-pad-x);
-  background: var(--color-paper);
+  padding: 56px 28px;
+  background: var(--color-butter);
+  border-top: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
 }
 
 .wrap {
@@ -29,15 +31,13 @@
   gap: 16px;
 }
 
-/* Ticket stubs on cream paper — washi-tape tab on top, perforated sides.
-   Still reads as a printed ticket without recoloring the whole section. */
 .stub {
   position: relative;
-  background: var(--color-surface);
-  padding: 28px 22px 24px;
+  background: #fbf7ec;
+  padding: 22px 22px 24px;
   text-align: left;
   border-radius: 4px;
-  border: 1px dashed color-mix(in oklab, var(--color-maroon) 45%, transparent);
+  border: 1px dashed color-mix(in oklab, var(--color-maroon) 40%, transparent);
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 500ms ease, transform 500ms ease;
@@ -56,26 +56,12 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--color-paper);
-  border: 1px dashed color-mix(in oklab, var(--color-maroon) 45%, transparent);
+  background: var(--color-butter);
+  border: 1px dashed color-mix(in oklab, var(--color-maroon) 40%, transparent);
   transform: translateY(-50%);
 }
 .stub::before { left: -8px; }
 .stub::after { right: -8px; }
-
-/* washi-tape tab — pink, slightly rotated, pinned to the top edge */
-.tape {
-  position: absolute;
-  top: -12px;
-  left: 22px;
-  width: 58px;
-  height: 22px;
-  background: var(--color-pink-soft);
-  border: 1px solid color-mix(in oklab, var(--color-pink) 55%, transparent);
-  box-shadow: 0 1px 2px color-mix(in oklab, var(--color-ink) 12%, transparent);
-  transform: rotate(-3deg);
-  pointer-events: none;
-}
 
 .num {
   font-family: var(--font-serif);

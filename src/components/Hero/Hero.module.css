@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: 28px 28px 40px;
+  padding: 20px 28px 44px;
   overflow: hidden;
   background: var(--color-paper);
 }
@@ -11,10 +11,10 @@
   display: grid;
   place-items: center;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.28;
   filter: saturate(0.9);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 82%);
-          mask-image: radial-gradient(ellipse at center, black 45%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+          mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
 }
 
 .backdropInner {
@@ -28,7 +28,7 @@
   position: relative;
   max-width: 820px;
   margin: 0 auto;
-  padding: 20px 20px 8px;
+  padding: 20px 20px 12px;
   text-align: center;
 }
 
@@ -41,8 +41,8 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-sage-ink);
-  background: color-mix(in oklab, var(--color-sage) 55%, var(--color-paper));
-  border: 1px solid color-mix(in oklab, var(--color-brown) 45%, transparent);
+  background: var(--color-sage);
+  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 25%, transparent);
   border-radius: 999px;
 }
 
@@ -127,6 +127,6 @@
   .marginLeft, .marginRight { display: flex; }
 }
 @media (max-width: 640px) {
-  .backdrop { opacity: 0.16; }
+  .backdrop { opacity: 0.2; }
   .stack { padding-top: 12px; }
 }
