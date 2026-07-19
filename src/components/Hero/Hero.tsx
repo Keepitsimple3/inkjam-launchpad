@@ -36,13 +36,7 @@ export function Hero() {
         </span>
 
         <h1 className={styles.title}>
-          Where writers meet.
-          <span className={styles.titleAlt}>
-            <LivingHeadline
-              prefix="Stories "
-              words={["grow.", "flourish.", "evolve.", "connect.", "matter.", "begin."]}
-            />
-          </span>
+          InkJam
         </h1>
 
         <p className={styles.lede}>

@@ -53,10 +53,9 @@
 }
 
 .title {
-  margin: 18px 0 6px;
-  font-size: clamp(46px, 7.4vw, 92px);
+  font-size: clamp(46px, 7.4vw, 184px);
   line-height: 1.0;
-  color: var(--color-ink);
+  color: var(--color-maroon-deep);
   font-weight: 500;
 }
 

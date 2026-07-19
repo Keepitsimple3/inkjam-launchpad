@@ -34,14 +34,6 @@
   white-space: nowrap;
 }
 
-.brand::before {
-  content: "⁂";
-  margin-right: 8px;
-  color: var(--color-clay);
-  font-style: normal;
-  letter-spacing: 0;
-}
-
 .navLink {
   position: relative;
   font-size: 13px;
