@@ -1,6 +1,7 @@
+"use client";
+
 import { useFastScroll } from "@/hooks/useFastScroll";
 import { SketchPlaceholder } from "@/components/SketchPlaceholder";
-import { Folio } from "@/components/Folio/Folio";
 import LivingHeadline from "./LivingHeadline";
 import styles from "./Hero.module.css";
 
@@ -9,50 +10,114 @@ export function Hero() {
 
   return (
     <section id="top" className={styles.hero}>
+      {/* Decorative side marks */}
+
       <div className={styles.marginLeft} aria-hidden>
         <span className={styles.mark}>§</span>
-        <span className={styles.markLabel}>issue 00</span>
+        <span className={styles.markLabel}>Issue 00</span>
       </div>
+
       <div className={styles.marginRight} aria-hidden>
         <span className={styles.mark}>⁂</span>
-        <span className={styles.markLabel}>founding</span>
+        <span className={styles.markLabel}>Founding</span>
       </div>
 
-      <div className={styles.backdrop} aria-hidden>
-        <div className={styles.backdropInner}>
-          <SketchPlaceholder
-            label="Flat pastel illustration: writer at a desk, sage & clay tones"
-            height="100%"
-          />
+      <div className={styles.container}>
+        {/* ==========================
+            LEFT COLUMN
+        =========================== */}
+
+        <div className={styles.left}>
+
+            <h1 className={styles.title}>
+              Where
+              <br />
+              writers meet.
+            </h1>
+
+
+          <p className={styles.lede}>
+            InkJam is a home for writers who want to create consistently.
+            Participate in timed writing jams, receive thoughtful feedback,
+            publish your work, and become part of a community that values
+            stories over algorithms.
+          </p>
+
+          <div className={styles.actions}>
+            <a
+              href="#waitlist"
+              className={styles.primary}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("waitlist");
+              }}
+            >
+              Join the Waitlist →
+            </a>
+
+            <a
+              href="#about"
+              className={styles.secondary}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("about");
+              }}
+            >
+              Learn More
+            </a>
+          </div>
+
+          <div className={styles.stats}>
+            <div>
+              <span className={styles.statNumber}>72 hr</span>
+              <span className={styles.statLabel}>Writing Jams</span>
+            </div>
+
+            <div>
+              <span className={styles.statNumber}>100%</span>
+              <span className={styles.statLabel}>Human Feedback</span>
+            </div>
+
+            <div>
+              <span className={styles.statNumber}>∞</span>
+              <span className={styles.statLabel}>Stories</span>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className={styles.stack}>
-        <Folio no="00" title="Cover" page="01" glyph="⁂" />
+        {/* ==========================
+            RIGHT COLUMN
+        =========================== */}
 
-        <span className={styles.eyebrow}>
-          <span className={styles.dot} aria-hidden />
-          First jam opens soon
-        </span>
+        <div className={styles.right}>
+          <div className={styles.illustration}>
+            <SketchPlaceholder
+              label="Editorial Illustration"
+              height="100%"
+            />
 
-        <h1 className={styles.title}>
-          InkJam
-        </h1>
+            {/* Optional floating cards */}
 
-        <p className={styles.lede}>
-          A cozy space to write, compete, and grow — built for indie and
-          student writers. No algorithms. Just prompts, editors, and honest
-          feedback.
-        </p>
+            <div className={styles.cardTop}>
+              <span className={styles.cardTitle}>
+                Next Jam
+              </span>
 
-        <div className={styles.actions}>
-          <a
-            href="#waitlist"
-            className={styles.primary}
-            onClick={(e) => { e.preventDefault(); scrollTo("waitlist"); }}
-          >
-            Join the Waitlist →
-          </a>
+              <span className={styles.cardText}>
+                "Write the first page of a forgotten book."
+              </span>
+            </div>
+
+            <div className={styles.cardBottom}>
+              <span className={styles.cardTitle}>
+                Community
+              </span>
+
+              <span className={styles.cardText}>
+                Feedback from writers, not algorithms.
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
