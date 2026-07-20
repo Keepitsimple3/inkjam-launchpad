@@ -5,7 +5,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
-          <a href="#top" className={styles.logo}>InkJam</a>
+          <a href="#top" className={styles.logo}>Ink<span>Jam</span></a>
           <p className={styles.tagline}>Write. Share. Grow.</p>
           <p className={styles.copy}>© {new Date().getFullYear()} InkJam</p>
         </div>
@@ -13,22 +13,22 @@ export function Footer() {
         <div className={styles.col}>
           <h4 className={styles.colTitle}>Explore</h4>
           <a href="#jams">Jams</a>
-          <a href="#desk">Prompt Library</a>
-          <a href="#community">Community</a>
+          <a href="#desk">The Desk</a>
+          <a href="#about">About</a>
         </div>
 
         <div className={styles.col}>
-          <h4 className={styles.colTitle}>About</h4>
-          <a href="#about">Our story</a>
-          <a href="#about">How it works</a>
-          <a href="#about">FAQ</a>
+          <h4 className={styles.colTitle}>More</h4>
+          <a href="#perks">Perks</a>
+          <a href="#waitlist">Waitlist</a>
+          <a href="#desk">Prompts</a>
         </div>
 
         <div className={styles.col}>
           <h4 className={styles.colTitle}>Connect</h4>
-          <a href="#community">Discord</a>
-          <a href="#community">Instagram</a>
-          <a href="#community">Contact</a>
+          <a href="#waitlist">Discord</a>
+          <a href="#waitlist">Instagram</a>
+          <a href="#waitlist">Contact</a>
         </div>
 
         <div className={styles.note}>

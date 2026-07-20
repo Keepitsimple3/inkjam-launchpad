@@ -1,18 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import styles from "./SignaturePad.module.css";
 
 type Point = { x: number; y: number; t: number };
 
-export function SignaturePad() {
+export type SignaturePadHandle = {
+  /** Returns the signature as a PNG data URL, or null if empty. */
+  toPng: () => string | null;
+  clear: () => void;
+  hasInk: boolean;
+};
+
+export const SignaturePad = forwardRef<SignaturePadHandle>((_props, ref) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const lastRef = useRef<Point | null>(null);
   const drawingRef = useRef(false);
+  const inkRef = useRef(false);
   const [hasInk, setHasInk] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const resize = () => {
+      // Preserve existing ink across resize.
+      const snapshot = inkRef.current ? canvas.toDataURL("image/png") : null;
       const rect = canvas.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
       canvas.width = rect.width * dpr;
@@ -22,7 +32,12 @@ export function SignaturePad() {
         ctx.scale(dpr, dpr);
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.strokeStyle = "#1a1408";
+        ctx.strokeStyle = "#1c1a18";
+        if (snapshot) {
+          const img = new Image();
+          img.onload = () => ctx.drawImage(img, 0, 0, rect.width, rect.height);
+          img.src = snapshot;
+        }
       }
     };
     resize();
@@ -30,7 +45,7 @@ export function SignaturePad() {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const getPoint = (e: PointerEvent | React.PointerEvent): Point => {
+  const getPoint = (e: React.PointerEvent<HTMLCanvasElement>): Point => {
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
     return {
@@ -45,6 +60,7 @@ export function SignaturePad() {
     (e.target as Element).setPointerCapture(e.pointerId);
     drawingRef.current = true;
     lastRef.current = getPoint(e);
+    inkRef.current = true;
     setHasInk(true);
   };
 
@@ -59,8 +75,7 @@ export function SignaturePad() {
     const dist = Math.hypot(dx, dy);
     const dt = Math.max(1, point.t - last.t);
     const velocity = dist / dt;
-    // Faster stroke → thinner line (ink taper)
-    const width = Math.max(0.8, Math.min(3.2, 3.4 - velocity * 3));
+    const width = Math.max(0.9, Math.min(3.2, 3.4 - velocity * 3));
     ctx.lineWidth = width;
     ctx.beginPath();
     ctx.moveTo(last.x, last.y);
@@ -69,7 +84,7 @@ export function SignaturePad() {
     lastRef.current = point;
   };
 
-  const onUp: React.PointerEventHandler<HTMLCanvasElement> = () => {
+  const onUp = () => {
     drawingRef.current = false;
     lastRef.current = null;
   };
@@ -79,20 +94,19 @@ export function SignaturePad() {
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    inkRef.current = false;
     setHasInk(false);
   };
 
-  const save = () => {
-    const canvas = canvasRef.current;
-    if (!canvas || !hasInk) return;
-    const url = canvas.toDataURL("image/png");
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "inkjam-signature.png";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  };
+  useImperativeHandle(ref, () => ({
+    toPng: () => {
+      const canvas = canvasRef.current;
+      if (!canvas || !inkRef.current) return null;
+      return canvas.toDataURL("image/png");
+    },
+    clear,
+    hasInk,
+  }));
 
   return (
     <div className={styles.pad}>
@@ -114,10 +128,9 @@ export function SignaturePad() {
         <button type="button" className={styles.btn} onClick={clear}>
           Clear
         </button>
-        <button type="button" className={`${styles.btn} ${styles.save}`} onClick={save}>
-          Save signature
-        </button>
       </div>
     </div>
   );
-}
+});
+
+SignaturePad.displayName = "SignaturePad";

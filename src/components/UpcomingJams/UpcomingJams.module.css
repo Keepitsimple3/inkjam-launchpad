@@ -1,19 +1,19 @@
 .section {
-  padding: 56px 28px 40px;
-  background: transparent;
+  padding: 72px 28px;
+  background: var(--color-paper);
 }
 
-.wrap { max-width: 1200px; margin: 0 auto; }
+.wrap { max-width: 1240px; margin: 0 auto; }
 
 .head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .title {
-  font-size: clamp(28px, 3.2vw, 40px);
+  font-size: clamp(30px, 3.4vw, 42px);
   color: var(--color-ink);
   margin: 0;
   letter-spacing: -0.02em;
@@ -23,7 +23,7 @@
   color: var(--color-maroon);
   text-decoration: none;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   transition: gap 200ms;
   display: inline-flex;
   align-items: center;
@@ -34,19 +34,20 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
 .card {
   background: var(--color-surface);
-  border: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent);
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   overflow: hidden;
-  transition: transform 260ms ease, box-shadow 260ms ease;
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
 }
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 32px -18px color-mix(in oklab, var(--color-ink) 30%, transparent);
+  box-shadow: 0 16px 36px -22px color-mix(in oklab, var(--color-ink) 24%, transparent);
+  border-color: color-mix(in oklab, var(--color-maroon) 30%, var(--color-border));
 }
 
 .imgWrap {
@@ -66,24 +67,25 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: color-mix(in oklab, var(--color-paper) 95%, transparent);
+  background: color-mix(in srgb, var(--color-paper) 95%, transparent);
+  backdrop-filter: blur(4px);
   color: var(--color-maroon);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid color-mix(in oklab, var(--color-maroon) 20%, transparent);
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--color-maroon) 22%, transparent);
 }
 
-.body { padding: 14px 16px 18px; }
+.body { padding: 16px 18px 20px; }
 
 .cardTitle {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 19px;
   color: var(--color-ink);
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   font-weight: 600;
 }
 
@@ -94,7 +96,7 @@
   color: var(--color-ink-soft);
   font-size: 12px;
 }
-.dot { color: var(--color-clay); }
+.dot { color: var(--color-maroon); font-weight: 700; }
 
 .dates {
   color: var(--color-muted-foreground);

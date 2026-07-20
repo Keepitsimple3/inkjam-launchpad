@@ -1,39 +1,27 @@
 .section {
   position: relative;
-  padding: 64px 28px 68px;
-}
-
-.band {
-  position: absolute;
-  inset: 24px 16px;
-  background: color-mix(in oklab, var(--color-sage) 85%, var(--color-paper) 15%);
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-sage-ink) 12%, transparent);
-  z-index: 0;
-  /* Slight torn-paper feel */
-  mask-image: radial-gradient(120% 100% at 50% 0%, black 96%, transparent);
+  padding: 72px 28px;
+  background: var(--color-paper-2);
 }
 
 .wrap {
   position: relative;
-  z-index: 1;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 20px 24px;
 }
 
 .head {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 28px;
+  gap: 32px;
   align-items: end;
-  margin-bottom: 34px;
+  margin-bottom: 36px;
 }
 
 .title {
-  font-size: clamp(30px, 3.6vw, 44px);
+  font-size: clamp(32px, 3.8vw, 48px);
   color: var(--color-ink);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   line-height: 1.08;
   letter-spacing: -0.02em;
 }
@@ -41,17 +29,17 @@
 .aster { color: var(--color-maroon); font-size: 0.7em; }
 
 .lede {
-  color: color-mix(in oklab, var(--color-ink) 80%, transparent);
+  color: var(--color-ink-soft);
   font-size: 15px;
   line-height: 1.55;
   margin: 0 0 14px;
-  max-width: 340px;
+  max-width: 360px;
 }
 
 .hand {
   font-family: var(--font-hand);
   color: var(--color-maroon);
-  font-size: 22px;
+  font-size: 24px;
   margin: 0;
   transform: rotate(-2deg);
   display: inline-block;
@@ -59,11 +47,11 @@
 
 .zine {
   justify-self: end;
-  width: 180px;
+  width: 170px;
   height: auto;
   border-radius: 8px;
   transform: rotate(4deg);
-  box-shadow: 6px 8px 20px -8px color-mix(in oklab, var(--color-ink) 30%, transparent);
+  box-shadow: 8px 10px 24px -10px color-mix(in oklab, var(--color-ink) 28%, transparent);
 }
 
 .grid {
@@ -73,25 +61,30 @@
 }
 
 .perk {
-  background: color-mix(in oklab, var(--color-paper) 92%, transparent);
-  border-radius: 6px;
-  padding: 18px 18px 20px;
-  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 15%, transparent);
+  background: var(--color-surface);
+  border-radius: 10px;
+  padding: 22px 22px 24px;
+  border: 1px solid var(--color-border);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+.perk:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -22px color-mix(in oklab, var(--color-ink) 22%, transparent);
 }
 
 .no {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-maroon);
   letter-spacing: 0.08em;
 }
 
 .perkTitle {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 19px;
   color: var(--color-ink);
-  margin: 6px 0 6px;
+  margin: 8px 0 6px;
   font-weight: 600;
 }
 

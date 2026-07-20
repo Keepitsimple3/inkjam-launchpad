@@ -1,18 +1,22 @@
+import { useEffect, useState } from "react";
 import { useFastScroll } from "@/hooks/useFastScroll";
+import { getWaitlistTotal } from "@/lib/supabase";
 import heroAsset from "@/assets/hero-desk.png.asset.json";
 import styles from "./Hero.module.css";
 
 export function Hero() {
   const scrollTo = useFastScroll({ offset: 64 });
+  const [total, setTotal] = useState<number | null>(null);
+
+  useEffect(() => {
+    getWaitlistTotal().then(setTotal).catch(() => setTotal(null));
+  }, []);
 
   return (
     <section id="top" className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.left}>
-          <span className={styles.badge}>
-            <span className={styles.badgeDot} aria-hidden />
-            Announcing the next jam
-          </span>
+          <span className={styles.eyebrow}>InkJam · Issue 00</span>
 
           <h1 className={styles.title}>
             Where<br />
@@ -26,9 +30,7 @@ export function Hero() {
           </h1>
 
           <p className={styles.lede}>
-            72-hour writing jams. Real feedback.<br />
-            A calm corner of the internet for stories<br />
-            and the people who write them.
+            72-hour writing jams and honest feedback — a calm corner of the internet for stories and the people who write them.
           </p>
 
           <div className={styles.actions}>
@@ -39,13 +41,11 @@ export function Hero() {
             >
               Join the waitlist
             </a>
-            <a
-              href="#jams"
-              className={styles.secondary}
-              onClick={(e) => { e.preventDefault(); scrollTo("jams"); }}
-            >
-              Explore jams <span aria-hidden>→</span>
-            </a>
+            {total !== null && total > 0 && (
+              <span className={styles.count}>
+                <strong>{total.toLocaleString()}</strong> writers already in line
+              </span>
+            )}
           </div>
         </div>
 
@@ -57,19 +57,9 @@ export function Hero() {
             width={1400}
             height={900}
           />
-
           <span className={`${styles.stickyNote} ${styles.noteA}`}>
-            <span className={styles.noteText}>Keep<br />it<br />real.</span>
             <span className={styles.tape} aria-hidden />
-          </span>
-
-          <span className={`${styles.stickyNote} ${styles.noteB}`}>
-            <span className={styles.noteText}>Make<br />time for<br />stories.</span>
-            <span className={styles.tape} aria-hidden />
-          </span>
-
-          <span className={styles.quote}>
-            <em>"Every story starts somewhere."</em>
+            Keep<br />it<br />real.
           </span>
         </div>
       </div>

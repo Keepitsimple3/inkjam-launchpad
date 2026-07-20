@@ -12,12 +12,9 @@ export function Desk() {
             <em>first line</em>.
           </h2>
           <p className={styles.lede}>
-            Open the notebook. A prompt is already waiting on the page.
-            No accounts, no pressure — just the quiet part of writing.
+            Open the notebook. A prompt is already waiting on the page — no accounts, no pressure, just the quiet part of writing.
           </p>
-          <p className={styles.hand}>
-            ↳ It's just for you.
-          </p>
+          <p className={styles.hand}>↳ It's just for you.</p>
         </div>
 
         <div className={styles.figure}>

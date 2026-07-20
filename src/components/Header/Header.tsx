@@ -10,7 +10,7 @@ const NAV = [
 ];
 
 export function Header() {
-  const scrollTo = useFastScroll({ offset: 72 });
+  const scrollTo = useFastScroll({ offset: 64 });
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,22 +23,16 @@ export function Header() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.inner}>
-        <div className={styles.brandGroup}>
-          <a
-            href="#top"
-            className={styles.logo}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollTo("top");
-            }}
-          >
-            InkJam
-          </a>
-          <div className={styles.tags} aria-hidden>
-            <span className={styles.tag}>#note</span>
-            <span className={styles.tag}>#issue00</span>
-          </div>
-        </div>
+        <a
+          href="#top"
+          className={styles.logo}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo("top");
+          }}
+        >
+          Ink<span>Jam</span>
+        </a>
 
         <nav className={styles.nav}>
           {NAV.map((item) => (
@@ -57,7 +51,6 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <a href="#login" className={styles.login}>Log in</a>
           <a
             href="#waitlist"
             className={styles.button}

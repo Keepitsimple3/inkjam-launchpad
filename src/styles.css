@@ -43,35 +43,36 @@
 :root {
   --radius: 0.5rem;
 
-  /* Warm paper zine palette */
-  --paper: #f3ecdc;
-  --paper-2: #ede4cf;
-  --sage: #cddac2;
-  --sage-soft: #dde5cf;
-  --sage-ink: #34432c;
-  --maroon: #6b2a24;
-  --maroon-deep: #4d1c17;
-  --clay: #c26a3f;
+  /* InkJam — white / off-white / maroon zine palette.
+     Flat fills. One accent (maroon) carried through every section. */
+  --paper: #fbfaf7;          /* base — near-white, warm */
+  --paper-2: #f3efe8;        /* off-white band */
+  --sage: #eef0ea;           /* soft neutral band (subtle, not green) */
+  --sage-soft: #f4f5f0;
+  --sage-ink: #3a3a36;
+  --maroon: #7a2531;         /* primary accent */
+  --maroon-deep: #5c1a23;
+  --clay: #c26a3f;           /* secondary warm accent (used sparingly) */
   --butter: #f0d9a8;
 
   --background: var(--paper);
-  --surface: #fbf5e6;
+  --surface: #ffffff;        /* pure white cards on the off-white body */
   --surface-alt: var(--paper-2);
 
-  --foreground: #241d1a;
-  --ink: #241d1a;
-  --ink-soft: #6a5b4d;
+  --foreground: #1c1a18;
+  --ink: #1c1a18;
+  --ink-soft: #615a52;
 
-  --muted: #e5dcc4;
-  --muted-foreground: #8a7a68;
+  --muted: #ece7df;
+  --muted-foreground: #8b8278;
 
   --primary: var(--maroon);
-  --primary-foreground: #fbf5e6;
+  --primary-foreground: #ffffff;
 
   --accent: var(--maroon);
-  --accent-foreground: #fbf5e6;
+  --accent-foreground: #ffffff;
 
-  --border: #d4c7a8;
+  --border: #e2ddd3;
   --ring: var(--maroon);
 
   --font-serif: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
@@ -92,9 +93,6 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    background-image: var(--grain);
-    background-size: 220px 220px;
-    background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
@@ -106,6 +104,18 @@
 
   ::selection {
     background: var(--color-maroon);
-    color: var(--color-primary-foreground);
+    color: #ffffff;
   }
+}
+
+/* Reusable zine running-head texture — applied selectively via .grain */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 220px 220px;
+  opacity: 0.5;
+  pointer-events: none;
+  mix-blend-mode: multiply;
 }

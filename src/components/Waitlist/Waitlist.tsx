@@ -1,64 +1,122 @@
-import { useState } from "react";
-import { useSeededCounter } from "@/hooks/useSeededCounter";
+import { useRef, useState } from "react";
+import { joinWaitlist } from "@/lib/supabase";
+import { SignaturePad, type SignaturePadHandle } from "./SignaturePad";
 import styles from "./Waitlist.module.css";
 
+type Status = "idle" | "loading" | "success" | "error";
+
+type Result = { position: number; total: number };
+
 export function Waitlist() {
-  const position = useSeededCounter(231);
+  const padRef = useRef<SignaturePadHandle>(null);
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [result, setResult] = useState<Result | null>(null);
+  const [error, setError] = useState<string>("");
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === "loading") return;
+
+    const trimmed = email.trim();
+    if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setStatus("error");
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setStatus("loading");
+    setError("");
+
+    try {
+      const signature = padRef.current?.toPng() ?? null;
+      const { position, total } = await joinWaitlist(trimmed, signature);
+      setResult({ position, total });
+      setStatus("success");
+      padRef.current?.clear();
+    } catch (err) {
+      setStatus("error");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong joining the waitlist. Please try again.",
+      );
+    }
+  };
 
   return (
     <section id="waitlist" className={styles.section}>
       <div className={styles.wrap}>
-        <div className={styles.book} aria-hidden>
-          <div className={styles.spread}>
-            <div className={styles.pageLeft}>
-              <span className={styles.pageLabel}>Guestbook</span>
-              <div className={styles.stamp}>
-                <span className={styles.stampTop}>InkJam</span>
-                <span className={styles.stampMid}>Issue 00</span>
-              </div>
-              <span className={styles.ribbon}>The beginning</span>
-            </div>
-            <div className={styles.pageRight}>
-              <span className={styles.pageLabel}>Add your name</span>
-              <p className={styles.penNote}>Be one of the first.<br />Leave your mark in Issue 00.</p>
-              <span className={styles.penLine}>Your name here...</span>
-            </div>
+        <div className={styles.book}>
+          <div className={styles.bookHead}>
+            <span className={styles.bookLabel}>Sign the guestbook</span>
+            <span className={styles.ticket}>Issue 00</span>
+          </div>
+
+          <div className={styles.padFrame}>
+            <span className={`${styles.crop} ${styles.cropTL}`} aria-hidden />
+            <span className={`${styles.crop} ${styles.cropTR}`} aria-hidden />
+            <span className={`${styles.crop} ${styles.cropBL}`} aria-hidden />
+            <span className={`${styles.crop} ${styles.cropBR}`} aria-hidden />
+            <SignaturePad ref={padRef} />
           </div>
         </div>
 
         <div className={styles.copy}>
+          <span className={styles.eyebrow}>Founding waitlist</span>
           <h2 className={styles.title}>
-            Sign the book <span className={styles.aster}>✻</span>
+            Leave your <em>mark</em>.
           </h2>
           <p className={styles.lede}>
-            Join the waitlist and become<br />a founding writer of InkJam.
+            Sign the book and become a founding writer of InkJam. Your signature goes into Issue 00.
           </p>
 
-          <form
-            className={styles.form}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              className={styles.input}
-              placeholder="Your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              aria-label="Email address"
-            />
-            <button type="submit" className={styles.button}>
-              Sign the book
+          <form className={styles.form} onSubmit={onSubmit} noValidate>
+            <div className={styles.field}>
+              <label htmlFor="waitlist-email" className={styles.label}>Your email</label>
+              <input
+                id="waitlist-email"
+                type="email"
+                className={styles.input}
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading"}
+                autoComplete="email"
+              />
+            </div>
+
+            <button type="submit" className={styles.button} disabled={status === "loading"}>
+              {status === "loading" ? "Signing…" : "Sign the book"}
+              {status !== "loading" && <span aria-hidden>→</span>}
             </button>
           </form>
 
-          <p className={styles.small}>
-            You're <em>#{position ?? "—"}</em> in line. We'll be in touch soon.
-          </p>
+          {status === "success" && result && (
+            <div className={styles.result} role="status">
+              <p className={styles.resultHead}>
+                You're <em>#{result.position}</em> in line.
+              </p>
+              <p className={styles.resultBody}>
+                {result.total > 0 && (
+                  <>You're one of {result.total.toLocaleString()} founding writers. </>
+                )}
+                We'll be in touch when Issue 00 opens.
+              </p>
+            </div>
+          )}
 
-          <span className={styles.tape} aria-hidden>
-            <span className={styles.tapeText}>Stories start here.<br />Yours could be next.</span>
-          </span>
+          {status === "error" && (
+            <div className={styles.error} role="alert">
+              {error}
+            </div>
+          )}
+
+          {status === "idle" && (
+            <span className={styles.tape} aria-hidden>
+              Stories start here. Yours could be next.
+            </span>
+          )}
         </div>
       </div>
     </section>
