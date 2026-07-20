@@ -4,6 +4,12 @@ import { getWaitlistTotal } from "@/lib/supabase";
 import heroAsset from "@/assets/hero-desk.png.asset.json";
 import styles from "./Hero.module.css";
 
+const THREE = [
+  { no: "01", word: "A deadline", note: "72-hour jams." },
+  { no: "02", word: "A place to publish", note: "Your words, yours." },
+  { no: "03", word: "Honest feedback", note: "No ratings." },
+];
+
 export function Hero() {
   const scrollTo = useFastScroll({ offset: 64 });
   const [total, setTotal] = useState<number | null>(null);
@@ -19,8 +25,7 @@ export function Hero() {
           <span className={styles.eyebrow}>InkJam · Issue 00</span>
 
           <h1 className={styles.title}>
-            Where<br />
-            writers meet.<br />
+            Where writers meet.<br />
             <em className={styles.italic}>
               Stories evolve.
               <svg className={styles.underline} viewBox="0 0 320 14" aria-hidden preserveAspectRatio="none">
@@ -47,6 +52,16 @@ export function Hero() {
               </span>
             )}
           </div>
+
+          <ul className={styles.three}>
+            {THREE.map((t) => (
+              <li key={t.no} className={styles.threeItem}>
+                <span className={styles.threeNo}>{t.no}</span>
+                <span className={styles.threeWord}>{t.word}</span>
+                <span className={styles.threeNote}>{t.note}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className={styles.right}>
@@ -57,10 +72,6 @@ export function Hero() {
             width={1400}
             height={900}
           />
-          <span className={`${styles.stickyNote} ${styles.noteA}`}>
-            <span className={styles.tape} aria-hidden />
-            Keep<br />it<br />real.
-          </span>
         </div>
       </div>
     </section>

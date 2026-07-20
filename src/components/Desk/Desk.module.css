@@ -1,18 +1,24 @@
 .section {
+  position: relative;
   padding: 72px 28px;
-  background: var(--color-paper-2);
+  background: var(--color-paper);
 }
 
 .wrap {
+  position: relative;
   max-width: 1240px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 56px;
-  align-items: center;
+  align-items: start;
 }
 
-.copy { max-width: 360px; }
+.copy {
+  max-width: 360px;
+  position: sticky;
+  top: 96px;
+}
 
 .eyebrow {
   font-size: 12px;
@@ -47,32 +53,20 @@
   display: inline-block;
 }
 
-.figure {
-  position: relative;
+/* The notebook — a real, writable page */
+.notebook {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  overflow: hidden;
+  padding: 26px 28px 22px;
   box-shadow: 0 26px 54px -32px color-mix(in oklab, var(--color-ink) 28%, transparent);
 }
 
-.img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.prompt {
-  position: absolute;
-  top: 8%;
-  left: 8%;
+.notebookHead {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background: color-mix(in srgb, var(--color-paper) 94%, transparent);
-  backdrop-filter: blur(6px);
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  max-width: 280px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .promptLabel {
@@ -80,17 +74,118 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-maroon);
-  font-weight: 600;
+  font-weight: 700;
 }
+
+.newPrompt {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 160ms, border-color 160ms, background 160ms;
+}
+.newPrompt:hover {
+  color: var(--color-maroon);
+  border-color: color-mix(in oklab, var(--color-maroon) 35%, var(--color-border));
+}
+
 .promptText {
   font-family: var(--font-serif);
   font-style: italic;
   color: var(--color-ink);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.35;
+  margin: 0 0 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+  animation: fadeIn 400ms ease both;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The writable page */
+.page {
+  position: relative;
+  min-height: 240px;
+}
+
+.textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 240px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  background: transparent;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 32px;
+  color: var(--color-ink);
+  padding: 4px 0 0;
+}
+.textarea::placeholder {
+  color: color-mix(in oklab, var(--color-ink) 32%, transparent);
+  font-style: italic;
+}
+
+.ruled {
+  position: absolute;
+  inset: 4px 0 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 31px,
+    color-mix(in oklab, var(--color-ink) 9%, transparent) 31px 32px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  font-size: 12px;
+}
+
+.counter {
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.counter.over { color: var(--color-maroon); font-weight: 600; }
+
+.saved {
+  color: var(--color-muted-foreground);
+  margin-left: auto;
+}
+
+.clear {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.clear:hover { color: var(--color-maroon); }
 
 @media (max-width: 860px) {
   .wrap { grid-template-columns: 1fr; gap: 36px; }
-  .copy { max-width: unset; }
+  .copy { position: static; max-width: unset; }
 }

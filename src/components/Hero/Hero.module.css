@@ -14,7 +14,7 @@
   gap: 48px;
 }
 
-.left { max-width: 540px; }
+.left { max-width: 560px; }
 
 .eyebrow {
   display: inline-block;
@@ -29,7 +29,7 @@
 .title {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: clamp(46px, 6vw, 80px);
+  font-size: clamp(44px, 5.6vw, 76px);
   line-height: 1.02;
   letter-spacing: -0.035em;
   color: var(--color-ink);
@@ -68,6 +68,7 @@
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
+  margin-bottom: 36px;
 }
 
 .primary {
@@ -99,6 +100,43 @@
   font-weight: 600;
 }
 
+/* The three things — merged in as an editorial list (replaces the old section) */
+.three {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.threeItem {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.threeNo {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-maroon);
+  font-size: 14px;
+}
+
+.threeWord {
+  font-family: var(--font-serif);
+  color: var(--color-ink);
+  font-size: 17px;
+}
+
+.threeNote {
+  color: var(--color-ink-soft);
+  font-size: 13px;
+}
+
 /* Right column */
 .right {
   position: relative;
@@ -113,37 +151,7 @@
   box-shadow: 0 30px 60px -28px color-mix(in oklab, var(--color-ink) 28%, transparent);
 }
 
-.stickyNote {
-  position: absolute;
-  padding: 16px 14px 12px;
-  background: #fffceb;
-  color: var(--color-ink);
-  font-family: var(--font-hand);
-  font-size: 22px;
-  line-height: 1.1;
-  text-align: center;
-  box-shadow: 4px 8px 18px -6px color-mix(in oklab, var(--color-ink) 30%, transparent);
-  transform: rotate(-5deg);
-  min-width: 92px;
-  border-radius: 2px;
-}
-.noteA { bottom: 10%; left: -4%; }
-
-.tape {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-3deg);
-  width: 48px;
-  height: 14px;
-  background: color-mix(in oklab, var(--color-butter) 85%, white);
-  opacity: 0.75;
-  border-left: 1px dashed color-mix(in oklab, var(--color-ink) 14%, transparent);
-  border-right: 1px dashed color-mix(in oklab, var(--color-ink) 14%, transparent);
-}
-
 @media (max-width: 900px) {
   .container { grid-template-columns: 1fr; gap: 36px; }
   .right { min-height: unset; order: -1; }
-  .noteA { left: 2%; bottom: 8%; }
 }

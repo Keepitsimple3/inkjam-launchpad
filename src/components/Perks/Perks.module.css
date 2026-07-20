@@ -1,13 +1,15 @@
 .section {
   position: relative;
   padding: 72px 28px;
-  background: var(--color-paper-2);
+  background: var(--color-paper);
 }
 
 .wrap {
   position: relative;
   max-width: 1240px;
   margin: 0 auto;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
 }
 
 .head {
