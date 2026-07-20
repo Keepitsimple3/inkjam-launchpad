@@ -1,30 +1,44 @@
+import { useEffect, useState } from "react";
 import { useFastScroll } from "@/hooks/useFastScroll";
 import styles from "./Header.module.css";
 
 const NAV = [
-  { id: "jams", label: "Jams", dropdown: true },
-  { id: "prompts", label: "Prompt Library", dropdown: true },
-  { id: "community", label: "Community", dropdown: true },
-  { id: "about", label: "About", dropdown: true },
+  { id: "jams", label: "Jams" },
+  { id: "desk", label: "The Desk" },
+  { id: "perks", label: "Perks" },
+  { id: "about", label: "About" },
 ];
 
 export function Header() {
   const scrollTo = useFastScroll({ offset: 72 });
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.inner}>
-
-        <a
-          href="#top"
-          className={styles.logo}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollTo("top");
-          }}
-        >
-          InkJam
-        </a>
+        <div className={styles.brandGroup}>
+          <a
+            href="#top"
+            className={styles.logo}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("top");
+            }}
+          >
+            InkJam
+          </a>
+          <div className={styles.tags} aria-hidden>
+            <span className={styles.tag}>#note</span>
+            <span className={styles.tag}>#issue00</span>
+          </div>
+        </div>
 
         <nav className={styles.nav}>
           {NAV.map((item) => (
@@ -38,21 +52,12 @@ export function Header() {
               }}
             >
               {item.label}
-              {item.dropdown && (
-                <span className={styles.arrow}>⌄</span>
-              )}
             </a>
           ))}
         </nav>
 
         <div className={styles.actions}>
-          <a
-            href="#login"
-            className={styles.login}
-          >
-            Log in
-          </a>
-
+          <a href="#login" className={styles.login}>Log in</a>
           <a
             href="#waitlist"
             className={styles.button}
@@ -64,7 +69,6 @@ export function Header() {
             Join the waitlist
           </a>
         </div>
-
       </div>
     </header>
   );

@@ -1,9 +1,14 @@
+import lighthouse from "@/assets/jam-lighthouse.jpg";
+import cabin from "@/assets/jam-cabin.jpg";
+import train from "@/assets/jam-train.jpg";
+import balloon from "@/assets/jam-balloon.jpg";
 import styles from "./UpcomingJams.module.css";
 
 const JAMS = [
-  { month: "MAY", day: "24", title: "The Letters We Never Sent", blurb: "A letter, an email, a message you never hit send on.", meta: ["72 hours", "All genres"] },
-  { month: "JUN", day: "07", title: "Small Things, Big Impact", blurb: "Stories about the little moments that changed everything.", meta: ["48 hours", "Flash Fiction"] },
-  { month: "JUN", day: "21", title: "After the Rain", blurb: "What comes after the storm?", meta: ["24 hours", "Poetry / Prose"] },
+  { img: lighthouse, tag: "Open", title: "Coastal Whispers", genre: "Poetry", hours: "72 hours", dates: "May 24 – May 27", blurb: "Write by the sea." },
+  { img: cabin, tag: "Up next", title: "Cabin Fever", genre: "Flash Fiction", hours: "72 hours", dates: "May 31 – Jun 3", blurb: "Stories from isolation." },
+  { img: train, tag: "Open", title: "Departures", genre: "Short Story", hours: "72 hours", dates: "Jun 7 – Jun 10", blurb: "Leaving. Arriving. Everything in between." },
+  { img: balloon, tag: "Upcoming", title: "Above the Noise", genre: "Nonfiction", hours: "72 hours", dates: "Jun 14 – Jun 17", blurb: "Clarity. Distance. Perspective." },
 ];
 
 export function UpcomingJams() {
@@ -11,31 +16,30 @@ export function UpcomingJams() {
     <section id="jams" className={styles.section}>
       <div className={styles.wrap}>
         <header className={styles.head}>
-          <span className={styles.eyebrow}>— section 05 —</span>
-          <h2 className={styles.title}>Upcoming Jams</h2>
-          <p className={styles.note}>A preview of the first three prompts.</p>
+          <h2 className={styles.title}>Upcoming jams</h2>
+          <a href="#waitlist" className={styles.link}>See all jams <span aria-hidden>→</span></a>
         </header>
 
-        <ul className={styles.list}>
+        <div className={styles.grid}>
           {JAMS.map((j) => (
-            <li key={j.title} className={styles.row}>
-              <div className={styles.date}>
-                <span className={styles.month}>{j.month}</span>
-                <span className={styles.day}>{j.day}</span>
+            <article key={j.title} className={styles.card}>
+              <div className={styles.imgWrap}>
+                <img src={j.img} alt={j.title} className={styles.img} loading="lazy" width={800} height={600} />
+                <span className={styles.tag}>{j.tag}</span>
               </div>
-              <div>
-                <h3 className={styles.jamTitle}>{j.title}</h3>
-                <p className={styles.blurb}>{j.blurb}</p>
+              <div className={styles.body}>
+                <h3 className={styles.cardTitle}>{j.title}</h3>
                 <div className={styles.meta}>
-                  {j.meta.map((m) => (
-                    <span key={m} className={styles.chip}>{m}</span>
-                  ))}
+                  <span>{j.genre}</span>
+                  <span className={styles.dot}>•</span>
+                  <span>{j.hours}</span>
                 </div>
+                <p className={styles.dates}>{j.dates}</p>
+                <p className={styles.blurb}>{j.blurb}</p>
               </div>
-              <span className={styles.badge}>Coming soon</span>
-            </li>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
