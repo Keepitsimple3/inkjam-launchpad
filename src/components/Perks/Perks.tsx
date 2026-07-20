@@ -1,46 +1,48 @@
-import { useInView } from "@/hooks/useInView";
+import zineImg from "@/assets/zine.jpg";
 import styles from "./Perks.module.css";
 
 const PERKS = [
-  {
-    n: "No. 01",
-    title: "Early access",
-    body: "First jam invite before the public launch — while the paint is still wet.",
-  },
-  {
-    n: "No. 02",
-    title: "A physical zine",
-    body: "Your signature and first line printed in the founding issue, mailed to your door.",
-  },
-  {
-    n: "No. 03",
-    title: "Credits, forever",
-    body: "Your name in the InkJam colophon — recorded as a founding writer.",
-  },
+  { title: "Printed zine", body: "A collectible zine mailed to founding writers." },
+  { title: "Founding badge", body: "A special badge on your profile that never goes away." },
+  { title: "Priority access", body: "Get early access to jams, prompts, and new features." },
+  { title: "Shape the future", body: "Your voice helps guide what InkJam becomes." },
 ];
 
 export function Perks() {
-  const { ref, inView } = useInView<HTMLDivElement>();
-
   return (
     <section id="perks" className={styles.section}>
-      <div ref={ref} className={styles.wrap}>
-        <h2 className={styles.title}>
-          Three things you get for showing up <em>early</em>.
-        </h2>
+      <div className={styles.band} aria-hidden />
+      <div className={styles.wrap}>
+        <header className={styles.head}>
+          <div>
+            <h2 className={styles.title}>
+              The early access<br />issue perks <span className={styles.aster}>✻</span>
+            </h2>
+            <p className={styles.lede}>
+              Join now and be part of InkJam from the beginning.
+            </p>
+            <p className={styles.hand}>
+              Founding writers leave their mark. ↴
+            </p>
+          </div>
+
+          <img
+            src={zineImg}
+            alt="A stack of collectible InkJam zines"
+            className={styles.zine}
+            loading="lazy"
+            width={800}
+            height={800}
+          />
+        </header>
 
         <div className={styles.grid}>
           {PERKS.map((p, i) => (
-            <div
-              key={p.n}
-              className={`${styles.stub} ${inView ? styles.visible : ""} ${
-                i === 0 ? styles.d1 : i === 1 ? styles.d2 : styles.d3
-              }`}
-            >
-              <span className={styles.num}>{p.n}</span>
-              <h3 className={styles.stubTitle}>{p.title}</h3>
-              <p className={styles.stubBody}>{p.body}</p>
-            </div>
+            <article key={p.title} className={styles.perk}>
+              <span className={styles.no}>No. 0{i + 1}</span>
+              <h3 className={styles.perkTitle}>{p.title}</h3>
+              <p className={styles.perkBody}>{p.body}</p>
+            </article>
           ))}
         </div>
       </div>

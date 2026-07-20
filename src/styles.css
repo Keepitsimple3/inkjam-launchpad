@@ -28,6 +28,7 @@
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
   --color-sage-ink: var(--sage-ink);
   --color-maroon: var(--maroon);
   --color-maroon-deep: var(--maroon-deep);
@@ -36,62 +37,48 @@
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
+  --font-hand: var(--font-hand);
 }
 
 :root {
   --radius: 0.5rem;
 
-  /* Pastel-flat zine palette */
-  --paper: #f4efe4;
-  --paper-2: #ebe4d2;
+  /* Warm paper zine palette */
+  --paper: #f3ecdc;
+  --paper-2: #ede4cf;
   --sage: #cddac2;
-  --sage-ink: #020403;
-  --maroon: #7a2e2a;
-  --maroon-deep: #5a1f1c;
-  --clay: #d97b4f;
+  --sage-soft: #dde5cf;
+  --sage-ink: #34432c;
+  --maroon: #6b2a24;
+  --maroon-deep: #4d1c17;
+  --clay: #c26a3f;
   --butter: #f0d9a8;
 
   --background: var(--paper);
-  --surface: #fbf7ec;
+  --surface: #fbf5e6;
   --surface-alt: var(--paper-2);
 
   --foreground: #241d1a;
   --ink: #241d1a;
-  --ink-soft: #5a4f47;
+  --ink-soft: #6a5b4d;
 
-  --muted: #e8e0cd;
-  --muted-foreground: #7a6b5f;
+  --muted: #e5dcc4;
+  --muted-foreground: #8a7a68;
 
   --primary: var(--maroon);
-  --primary-foreground: #fbf7ec;
+  --primary-foreground: #fbf5e6;
 
   --accent: var(--maroon);
-  --accent-foreground: #fbf7ec;
+  --accent-foreground: #fbf5e6;
 
-  --border: #d9cfb8;
-  --ring: var(--sage-ink);
+  --border: #d4c7a8;
+  --ring: var(--maroon);
 
   --font-serif: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", "Fraunces", cursive;
 
-  /* subtle paper grain — SVG noise data-uri, ~4% opacity */
-  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15  0 0 0 0 0.12  0 0 0 0 0.1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-@utility grain {
-  position: relative;
-  isolation: isolate;
-}
-@utility grain-overlay {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--grain);
-  background-size: 160px 160px;
-  mix-blend-mode: multiply;
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0 0.09  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 @layer base {
@@ -113,6 +100,12 @@
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: var(--color-maroon);
+    color: var(--color-primary-foreground);
   }
 }

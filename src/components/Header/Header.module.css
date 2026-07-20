@@ -2,173 +2,127 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(14px) saturate(140%);
+  background: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
 
-  backdrop-filter: blur(14px) saturate(150%);
-
-  background: color-mix(
-    in srgb,
-    var(--color-paper) 90%,
-    transparent
-  );
-
-  border-bottom: 1px solid rgba(120, 95, 65, 0.12);
+.header.scrolled {
+  background: color-mix(in srgb, var(--color-paper) 94%, transparent);
+  border-bottom-color: color-mix(in oklab, var(--color-ink) 10%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--color-ink) 4%, transparent);
 }
 
 .inner {
   max-width: 1320px;
-
-  margin: auto;
-
-  height: 76px;
-
+  margin: 0 auto;
+  height: 72px;
   padding: 0 36px;
-
   display: grid;
-  grid-template-columns: 220px 1fr auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  gap: 24px;
+}
+
+.brandGroup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .logo {
   text-decoration: none;
-
   font-family: var(--font-serif);
-
-  font-size: 2rem;
-
+  font-size: 1.85rem;
   color: var(--color-ink);
-
   font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
 
-  letter-spacing: -0.02em;
+.tags { display: inline-flex; gap: 6px; }
+
+.tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-maroon);
+  background: color-mix(in oklab, var(--color-maroon) 8%, transparent);
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
 }
 
 .nav {
   display: flex;
-
   justify-content: center;
-
-  gap: 34px;
+  gap: 36px;
 }
 
 .link {
   text-decoration: none;
-
-  color: var(--color-ink-soft);
-
+  color: var(--color-ink);
   font-size: 0.95rem;
-
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  transition: color .18s ease;
-
+  font-weight: 500;
+  transition: color 180ms ease;
   position: relative;
+  padding: 6px 0;
 }
 
-.link:hover {
-  color: var(--color-maroon);
-}
+.link:hover { color: var(--color-maroon); }
 
 .link::after {
   content: "";
-
   position: absolute;
-
   left: 0;
   right: 0;
-  bottom: -6px;
-
-  height: 1px;
-
+  bottom: 0;
+  height: 1.5px;
   background: var(--color-maroon);
-
   transform: scaleX(0);
-
-  transition: transform .25s ease;
+  transform-origin: center;
+  transition: transform 260ms ease;
 }
-
-.link:hover::after {
-  transform: scaleX(1);
-}
-
-.arrow {
-  font-size: .7rem;
-
-  opacity: .55;
-
-  margin-top: 1px;
-}
+.link:hover::after { transform: scaleX(1); }
 
 .actions {
   display: flex;
-
   align-items: center;
-
-  gap: 20px;
+  gap: 22px;
 }
 
 .login {
   text-decoration: none;
-
   color: var(--color-ink);
-
-  font-size: .94rem;
+  font-size: 0.94rem;
+  font-weight: 500;
 }
-
-.login:hover {
-  color: var(--color-maroon);
-}
+.login:hover { color: var(--color-maroon); }
 
 .button {
   text-decoration: none;
-
-  background: #5c251f;
-
-  color: white;
-
-  padding: 13px 22px;
-
-  border-radius: 10px;
-
-  font-size: .92rem;
-
+  background: var(--color-maroon);
+  color: var(--color-primary-foreground);
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 500;
-
-  transition:
-    transform .18s ease,
-    background .18s ease;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 200ms ease;
+  box-shadow: 0 1px 0 var(--color-maroon-deep), 0 6px 18px -8px color-mix(in oklab, var(--color-maroon) 60%, transparent);
 }
-
 .button:hover {
-  background: #6b2b24;
-
+  background: var(--color-maroon-deep);
   transform: translateY(-1px);
 }
 
 @media (max-width: 960px) {
-
-  .inner {
-    grid-template-columns: auto auto;
-  }
-
-  .nav {
-    display: none;
-  }
+  .inner { grid-template-columns: auto 1fr auto; }
+  .nav, .tags { display: none; }
 }
 
 @media (max-width: 640px) {
-
-  .button {
-    display: none;
-  }
-
-  .inner {
-    padding: 0 20px;
-    height: 68px;
-  }
-
-  .logo {
-    font-size: 1.75rem;
-  }
+  .login { display: none; }
+  .inner { padding: 0 20px; height: 64px; }
+  .logo { font-size: 1.6rem; }
+  .button { padding: 9px 14px; font-size: 0.85rem; }
 }

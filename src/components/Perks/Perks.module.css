@@ -1,99 +1,112 @@
 .section {
-  padding: 56px 28px;
-  background: var(--color-butter);
-  border-top: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
+  position: relative;
+  padding: 64px 28px 68px;
+}
+
+.band {
+  position: absolute;
+  inset: 24px 16px;
+  background: color-mix(in oklab, var(--color-sage) 85%, var(--color-paper) 15%);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-sage-ink) 12%, transparent);
+  z-index: 0;
+  /* Slight torn-paper feel */
+  mask-image: radial-gradient(120% 100% at 50% 0%, black 96%, transparent);
 }
 
 .wrap {
-  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
+  padding: 20px 24px;
 }
 
-.eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-maroon);
+.head {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 34px;
 }
 
 .title {
-  font-size: clamp(30px, 3.6vw, 42px);
-  margin: 8px 0 28px;
+  font-size: clamp(30px, 3.6vw, 44px);
   color: var(--color-ink);
+  margin: 0 0 10px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
-.title em { color: var(--color-maroon); font-style: italic; }
+
+.aster { color: var(--color-maroon); font-size: 0.7em; }
+
+.lede {
+  color: color-mix(in oklab, var(--color-ink) 80%, transparent);
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0 0 14px;
+  max-width: 340px;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  color: var(--color-maroon);
+  font-size: 22px;
+  margin: 0;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.zine {
+  justify-self: end;
+  width: 180px;
+  height: auto;
+  border-radius: 8px;
+  transform: rotate(4deg);
+  box-shadow: 6px 8px 20px -8px color-mix(in oklab, var(--color-ink) 30%, transparent);
+}
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-.stub {
-  position: relative;
-  background: #fbf7ec;
-  padding: 22px 22px 24px;
-  text-align: left;
-  border-radius: 4px;
-  border: 1px dashed color-mix(in oklab, var(--color-maroon) 40%, transparent);
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 500ms ease, transform 500ms ease;
+.perk {
+  background: color-mix(in oklab, var(--color-paper) 92%, transparent);
+  border-radius: 6px;
+  padding: 18px 18px 20px;
+  border: 1px solid color-mix(in oklab, var(--color-sage-ink) 15%, transparent);
 }
 
-.stub.visible { opacity: 1; transform: translateY(0); }
-.stub.d1 { transition-delay: 60ms; }
-.stub.d2 { transition-delay: 140ms; }
-.stub.d3 { transition-delay: 220ms; }
-
-.stub::before,
-.stub::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--color-butter);
-  border: 1px dashed color-mix(in oklab, var(--color-maroon) 40%, transparent);
-  transform: translateY(-50%);
-}
-.stub::before { left: -8px; }
-.stub::after { right: -8px; }
-
-.num {
+.no {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 14px;
-  color: var(--color-clay);
-  letter-spacing: 0.1em;
+  font-size: 12px;
+  color: var(--color-maroon);
+  letter-spacing: 0.08em;
 }
 
-.stubTitle {
+.perkTitle {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 18px;
   color: var(--color-ink);
-  margin: 6px 0 8px;
+  margin: 6px 0 6px;
+  font-weight: 600;
 }
 
-.stubBody {
-  font-size: 14px;
-  line-height: 1.55;
+.perkBody {
   color: var(--color-ink-soft);
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin: 0;
 }
 
-.perf {
-  margin-top: 14px;
-  border-top: 1px dashed color-mix(in oklab, var(--color-maroon) 30%, transparent);
-  padding-top: 8px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-muted-foreground);
+@media (max-width: 900px) {
+  .head { grid-template-columns: 1fr; }
+  .zine { justify-self: start; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
-
-@media (max-width: 780px) {
+@media (max-width: 520px) {
   .grid { grid-template-columns: 1fr; }
 }
